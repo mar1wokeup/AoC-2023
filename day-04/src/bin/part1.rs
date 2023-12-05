@@ -3,26 +3,28 @@ use std::fs;
 fn parse_card(card: &str) -> (Vec<i32>, Vec<i32>) {
     let parts: Vec<&str> = card.split(" | ").collect();
     let winning_numbers = parts[0].split_whitespace()
-                                  .map(|num| num.trim().parse::<i32>().unwrap())
+                                  .filter_map(|num| num.parse::<i32>().ok())
                                   .collect();
     let user_numbers = parts[1].split_whitespace()
-                                .map(|num| num.trim().parse::<i32>().unwrap())
+                                .filter_map(|num| num.parse::<i32>().ok())
                                 .collect();
     (winning_numbers, user_numbers)
 }
 
-
 fn calculate_card_points(winning_numbers: &Vec<i32>, user_numbers: &Vec<i32>) -> i32 {
     let mut points = 0;
-    let mut multiplier = 1;
 
     for &num in user_numbers {
         if winning_numbers.contains(&num) {
-            points += multiplier;
-            multiplier *= 2;
+            if points == 0 {
+                points = 1;
+            } else {
+                points *= 2;
+            }
+            println!("set {:?}, found {}", user_numbers, &num);
         }
     }
-
+    println!("set is worth {:?} points", points);
     points
 }
 
