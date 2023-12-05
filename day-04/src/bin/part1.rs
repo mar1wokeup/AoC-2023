@@ -33,5 +33,5 @@ fn main() {
 
     let total = total_points(cards);
 
-    println!("Total points: {}", total_points);
+    println!("Total points: {}", total);
 }
