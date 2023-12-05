@@ -1,0 +1,7 @@
+/day-01x/
+
+/day-x/
+day-x.*
+
+.DS_Store
+*/DS_Store
