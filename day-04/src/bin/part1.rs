@@ -27,6 +27,20 @@ fn total_points(cards: &Vec<(Vec<i32>, Vec<i32>)>) -> i32 {
          .sum()
 }
 
+#[cfg(test)]:
+mod tests {
+    use super::*;
+
+    #[test]
+    fn check_test_input() {
+        let input = fs::read_to_string("inputtest.txt").expect("Failed to read file");
+        let cards: Vec<(Vec<i32>, Vec<i32>)> = input.lines().map(|line| parse_card(line)).collect();
+
+        let total = total_points(cards);
+        assert_eq!(total, 13);
+    }
+} 
+
 fn main() {
     let input = fs::read_to_string("input.txt").expect("Failed to read file");
     let cards: Vec<(Vec<i32>, Vec<i32>)> = input.lines().map(|line| parse_card(line)).collect();
