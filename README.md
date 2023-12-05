@@ -3,4 +3,4 @@ Advent of Code - 2023 // Rust
 
 Trying to keep up with it, bare with me.
 
-Basically learning with practice.
+Basically learning Rust with practice.
