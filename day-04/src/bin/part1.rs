@@ -21,13 +21,17 @@ fn calculate_card_points(winning_numbers: &Vec<i32>, user_numbers: &Vec<i32>) ->
     points
 }
 
+fn total_points(cards: &Vec<(Vec<i32>, Vec<i32>)>) -> i32 {
+    cards.iter()
+         .map(|(winning, user)| calculate_card_points(winning, user))
+         .sum()
+}
+
 fn main() {
     let input = fs::read_to_string("input.txt").expect("Failed to read file");
     let cards: Vec<(Vec<i32>, Vec<i32>)> = input.lines().map(|line| parse_card(line)).collect();
 
-    let total_points: i32 = cards.iter()
-                                 .map(|(winning, user)| calculate_card_points(winning, user))
-                                 .sum();
+    let total = total_points(cards);
 
     println!("Total points: {}", total_points);
 }
